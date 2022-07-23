@@ -1,4 +1,4 @@
-i#!/usr/bin/env bash
+#!/usr/bin/env bash
 # script that displays To infinity and beyond indefinitely
 #+	with a sleep 2 between each loop iteration
 #+	Displays I hate the kill command when receiving a SIGTERM signal
