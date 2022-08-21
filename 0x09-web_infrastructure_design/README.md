@@ -1,6 +1,6 @@
 # Web Infrastructure Design
 
-This project contains tasks for learning more about the different ways a web infrastructure could be designed for web development.
+This project contains tasks for learning more about the different ways a web infrastructure could be designed and implemented for web development.
 
 ## Tasks To Complete
 
@@ -31,3 +31,10 @@ This project contains tasks for learning more about the different ways a web inf
     + 1 server.
     + 1 load-balancer (HAproxy) configured as cluster with the other one.
   + Split components (web server, application server, database) with their own server.
+
+## Designs Presented
+
++ Simple web stack - [details](0-simple_web_stack.md)
++ Distributed web infrastructure - [details](1-distributed_web_infrastructure.md)
++ Secured and monitored web infrastrucure - [details](2-secured_and_monitored_web_infrastructure.md)
++ Scaled up web infrastructure - [details](3-scale_up.md)
