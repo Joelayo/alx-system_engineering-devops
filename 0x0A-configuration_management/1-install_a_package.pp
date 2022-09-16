@@ -1,5 +1,5 @@
-# Installs a package
+# installs the package puppet-lint
 package { 'puppet-lint':
-  ensure   => '2.5.0',
-  provider => 'gem'
+  ensure   => '2.1.1',
+  provider => 'gem',
 }
