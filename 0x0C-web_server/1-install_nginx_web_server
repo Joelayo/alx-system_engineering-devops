@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 # Script to install, configure Nginx web Server
-apt-get -y update
-apt-get -y upgrade
-apt-get -y install nginx
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install nginx -y
 ufw allow 'Nginx HTTP'
 mkdir -p /var/www/html
-chmod -R 755 /var/www
-echo 'Hello World!' > /var/www/html/index.html
+sudo chown -R $USER:$USER /var/www/html
+sudo chmod -R 755 /var/www
+sudo rm /var/www/html/index.nginx-debian.html
+touch /var/www/html/index.hmtl
+sudo echo 'Hello World!' > /var/www/html/index.html
 if [ "$(pgrep -c nginx)" -le 0 ]; then
-	service nginx start
+	sudo service nginx start
 else
-	service nginx restart
+	sudo service nginx restart
 fi
