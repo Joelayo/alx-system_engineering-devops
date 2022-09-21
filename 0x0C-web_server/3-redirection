@@ -1,18 +1,9 @@
 #!/usr/bin/env bash
 # Create redirect
+INDEX_COPY="Hello World!"
+
 sudo apt update -y
-sudo apt upgrade -y
 sudo apt install nginx -y
-ufw allow 'Nginx HTTP'
-mkdir -p /var/www/html
-sudo chown -R $USER:$USER /var/www/html
-sudo chmod -R 755 /var/www
-sudo rm /var/www/html/index.nginx-debian.html
-touch /var/www/html/index.hmtl
-sudo echo 'Hello World!' > /var/www/html/index.html
+echo "$INDEX_COPY" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
 sudo sed -i '/^\sserver_name.*/a \        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
-if [ "$(pgrep -c nginx)" -le 0 ]; then
-	sudo service nginx start
-else
-	sudo service nginx restart
-fi
+sudo service nginx start
