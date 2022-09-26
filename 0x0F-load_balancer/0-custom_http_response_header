@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # Create custom 404 page
-INDEX_COPY="Hello World!"
-ERROR_COPY="Ceci n'est pas une page"
 
 sudo apt update -y
 sudo apt upgrade -y
@@ -12,11 +10,10 @@ sudo chown -R $USER:$USER /var/www/html
 sudo chmod -R 755 /var/www
 sudo rm /var/www/html/index.nginx-debian.html
 touch /var/www/html/index.hmtl
-sudo echo '' > /var/www/html/index.html
-echo '$ERROR_COPY' | sudo tee /var/www/html/custom_404.html > /dev/null
-sudo sed -i '/^\sserver_name.*/a \        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
-sudo sed -i '/^\slocation.*/i \        error_page 404 /custom_404.html;' /etc/nginx/sites-available/default
-sed -i '/listen 80 default_server;/a add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
+sudo echo 'Hello World!' > /var/www/html/index.html
+sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
+sed -i '/rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sed -i '/add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
 if [ "$(pgrep -c nginx)" -le 0 ]; then
 	sudo service nginx start
 else
