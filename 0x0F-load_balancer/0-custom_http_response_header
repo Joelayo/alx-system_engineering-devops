@@ -1,21 +1,9 @@
 #!/usr/bin/env bash
-# Create custom 404 page
-
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install nginx -y
+# Configures a new Ubuntu server with a custom HTTP header response
+apt-get -y update
+apt-get -y install nginx
 ufw allow 'Nginx HTTP'
-mkdir -p /var/www/html
-sudo chown -R $USER:$USER /var/www/html
-sudo chmod -R 755 /var/www
-sudo rm /var/www/html/index.nginx-debian.html
-touch /var/www/html/index.hmtl
-sudo echo 'Hello World!' > /var/www/html/index.html
-sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
-sed -i '/rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
-sed -i '/add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
-if [ "$(pgrep -c nginx)" -le 0 ]; then
-	sudo service nginx start
-else
-	sudo service nginx restart
-fi
+echo 'Hello Workd!' > /var/www/html/index.nginx-debian.html
+sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sed -i '/listen 80 default_server;/a add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
+service nginx start
