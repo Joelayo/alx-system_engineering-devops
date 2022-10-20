@@ -18,6 +18,6 @@ if __name__ == '__main__':
                 "task": t.get("title"),
                 "completed": t.get("completed"),
                 "username": u.get("username")
-            } for t in requests.get(url + "todos",
+            } for t in requests.get(API_URL + "todos",
                                     params={"userId": u.get("id")}).json()]
             for u in users}, jsonfile)
