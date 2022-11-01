@@ -7,7 +7,7 @@ import requests
 def recurse(subreddit, hot_list=[]):
     """ This function get all data from API with recursion """
     global after
-    headers = {'User-Agent': 'xica369'}
+    headers = {'User-Agent': 'X-modhash'}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     parameters = {'after': after}
     response = requests.get(url, headers=headers, allow_redirects=False,
